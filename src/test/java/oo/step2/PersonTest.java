@@ -9,13 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PersonTest {
 
-//    @Test
-//    public void should_return_message_with_name_and_age_when_introduce_given_student() {
-//        Person tom = new Student(1, "Tom", 18);
-//        String introduce = tom.introduce();
-//
-//        assertThat(introduce).isEqualTo("My name is Tom. I am 18 years old. I am a student.");
-//    }
+    @Test
+    public void should_return_message_with_name_and_age_when_introduce_given_student() {
+        Person tom = new Student(1, "Tom", 18);
+        String introduce = tom.introduce();
+
+        assertThat(introduce).isEqualTo("My name is Tom. I am 18 years old. I am a student.");
+    }
 //
 //    @Test
 //    public void should_return_message_with_name_and_age_when_introduce_given_teacher() {
