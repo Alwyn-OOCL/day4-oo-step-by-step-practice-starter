@@ -14,7 +14,10 @@ public class Teacher extends Person {
 
     @Override
     public String introduce() {
-        String klasses = klass.stream().map(Klass::getId).map(String::valueOf).collect(Collectors.joining(", "));
+        String klasses = klass.stream()
+                .map(Klass::getId)
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
         return super.introduce() + " I am a teacher. I teach Class " + klasses + ".";
     }
 
