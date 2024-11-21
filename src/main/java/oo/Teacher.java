@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Teacher extends Person {
 
-    private List<Klass> klass;
+    private List<Klass> klasses;
 
     public Teacher(int id, String name, int age) {
         super(id, name, age);
@@ -14,21 +14,25 @@ public class Teacher extends Person {
 
     @Override
     public String introduce() {
-        String klasses = klass.stream()
+        String klassesIds = klasses.stream()
                 .map(Klass::getId)
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
-        return super.introduce() + " I am a teacher. I teach Class " + klasses + ".";
+        return super.introduce() + " I am a teacher. I teach Class " + klassesIds + ".";
     }
 
     public boolean belongsTo(Klass klass) {
-        return this.klass != null && this.klass.contains(klass);
+        return this.klasses != null && this.klasses.contains(klass);
     }
 
     public void assignTo(Klass klass) {
-        if (this.klass == null) {
-            this.klass = new ArrayList<>();
+        if (this.klasses == null) {
+            this.klasses = new ArrayList<>();
         }
-        this.klass.add(klass);
+        this.klasses.add(klass);
+    }
+
+    public boolean isTeaching(Student tom) {
+        return klasses.stream().anyMatch(klass -> klass.getId().equals(tom.getKlass().getId()));
     }
 }

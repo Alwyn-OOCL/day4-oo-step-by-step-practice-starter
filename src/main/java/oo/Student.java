@@ -19,4 +19,8 @@ public class Student extends Person {
     public void join(Klass klass) {
         this.klass = klass;
     }
+
+    public Klass getKlass() {
+        return klass;
+    }
 }
