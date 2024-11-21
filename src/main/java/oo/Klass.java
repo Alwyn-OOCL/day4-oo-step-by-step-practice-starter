@@ -6,6 +6,8 @@ public class Klass {
 
     private Integer id;
 
+    private Person leader;
+
     public Klass(Integer id) {
         this.id = id;
     }
@@ -33,4 +35,21 @@ public class Klass {
     public Integer getId() {
         return id;
     }
+
+    public Person getLeader() {
+        return leader;
+    }
+
+    public void assignLeader(Student student) {
+        if (student.getKlass() == null || !student.getKlass().equals(this)) {
+            System.out.print("It is not one of us.\n");
+            return;
+        }
+        this.leader = student;
+    }
+
+    public boolean isLeader(Student student) {
+        return leader != null && leader.equals(student);
+    }
+
 }
