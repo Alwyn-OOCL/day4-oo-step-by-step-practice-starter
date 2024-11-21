@@ -39,4 +39,15 @@ public class Person {
         return Objects.hash(id);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }

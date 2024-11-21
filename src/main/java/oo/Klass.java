@@ -29,4 +29,8 @@ public class Klass {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public Integer getId() {
+        return id;
+    }
 }
