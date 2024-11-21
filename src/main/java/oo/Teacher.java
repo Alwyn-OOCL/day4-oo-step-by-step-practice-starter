@@ -18,7 +18,7 @@ public class Teacher extends Person {
                 .map(Klass::getId)
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
-        return super.introduce() + " I am a teacher. I teach Class " + klassesIds + ".";
+        return super.introduce() + " I am a teacher. I teach class " + klassesIds + ".";
     }
 
     public boolean belongsTo(Klass klass) {
@@ -30,9 +30,11 @@ public class Teacher extends Person {
             this.klasses = new ArrayList<>();
         }
         this.klasses.add(klass);
+        klasses.forEach(attachKlass -> attachKlass.attach(this));
     }
 
-    public boolean isTeaching(Student tom) {
-        return klasses.stream().anyMatch(klass -> klass.getId().equals(tom.getKlass().getId()));
+    public boolean isTeaching(Student student) {
+        return klasses.stream().anyMatch(klass -> klass.getParticipants().contains(student)
+                && klass.getParticipants().contains(this));
     }
 }

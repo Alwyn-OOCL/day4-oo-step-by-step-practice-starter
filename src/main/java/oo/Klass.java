@@ -1,8 +1,10 @@
 package oo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Klass {
 
@@ -10,7 +12,7 @@ public class Klass {
 
     private Student leader;
 
-    private List<Person> participants;
+    private Set<Person> participants;
 
     public Klass(Integer id) {
         this.id = id;
@@ -44,6 +46,10 @@ public class Klass {
         return leader;
     }
 
+    public Set<Person> getParticipants() {
+        return participants;
+    }
+
     public void assignLeader(Student student) {
         if (student.getKlass() == null || !student.getKlass().equals(this)) {
             System.out.print("It is not one of us.\n");
@@ -66,7 +72,7 @@ public class Klass {
 
     public void attach(Person person) {
         if (participants == null) {
-            participants = new ArrayList<>();
+            participants = new HashSet<>();
         }
         participants.add(person);
     }
