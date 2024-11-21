@@ -9,7 +9,11 @@ public class Student extends Person {
 
     @Override
     public String introduce() {
-        return super.introduce() + " I am a student. I am in class " + klass.getId() + ".";
+        Person leader = klass.getLeader();
+        if (leader == null) {
+            return super.introduce() + " I am a student. I am at class " + klass.getId() + ".";
+        }
+        return super.introduce() + " I am a student. I am the leader of class " + klass.getId() + ".";
     }
 
     public boolean isIn(Klass klass) {
