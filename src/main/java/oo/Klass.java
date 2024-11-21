@@ -6,7 +6,7 @@ public class Klass {
 
     private Integer id;
 
-    private Person leader;
+    private Student leader;
 
     public Klass(Integer id) {
         this.id = id;
