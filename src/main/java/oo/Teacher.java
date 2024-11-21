@@ -30,11 +30,16 @@ public class Teacher extends Person {
             this.klasses = new ArrayList<>();
         }
         this.klasses.add(klass);
-        klasses.forEach(attachKlass -> attachKlass.attach(this));
+        klass.addKlassParticipant(this);
     }
 
     public boolean isTeaching(Student student) {
         return klasses.stream().anyMatch(klass -> klass.getParticipants().contains(student)
                 && klass.getParticipants().contains(this));
+    }
+
+    @Override
+    public void updateLeader(Klass klass, Student leader) {
+        System.out.println("I am " + this.getName() + ", teacher of Class " + klass.getId() + ". I know " + leader.getName() + " become Leader.");
     }
 }

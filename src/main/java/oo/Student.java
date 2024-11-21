@@ -25,6 +25,11 @@ public class Student extends Person {
         klass.attach(this);
     }
 
+    @Override
+    public void updateLeader(Klass klass, Student leader) {
+        System.out.println("I am " + this.getName() + ", student of Class " + klass.getId() + ". I know " + leader.getName() + " become Leader.");
+    }
+
     public Klass getKlass() {
         return klass;
     }

@@ -2,7 +2,8 @@ package oo;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements KlassParticipant {
+
     private Integer id;
 
     private String name;
@@ -21,6 +22,9 @@ public class Person {
     public String introduce() {
         return "My name is " + name + ". I am " + age + " years old.";
     }
+
+    @Override
+    public void updateLeader(Klass klass, Student leader) {}
 
     @Override
     public boolean equals(Object o) {

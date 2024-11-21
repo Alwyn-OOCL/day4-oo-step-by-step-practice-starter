@@ -1,8 +1,6 @@
 package oo;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,13 +10,47 @@ public class Klass {
 
     private Student leader;
 
-    private Set<Person> participants;
+    private Set<Person> klassParticipants;
+
 
     public Klass(Integer id) {
         this.id = id;
     }
 
     public Klass() {
+    }
+
+
+    public void assignLeader(Student student) {
+        if (student.getKlass() == null || !student.getKlass().equals(this)) {
+            System.out.print("It is not one of us.\n");
+            return;
+        }
+        this.leader = student;
+        notifyKlassObservers();
+    }
+
+    public boolean isLeader(Student student) {
+        return leader != null && leader.equals(student);
+    }
+
+    public void attach(Person person) {
+        if (person != null) {
+            addKlassParticipant(person);
+        }
+    }
+
+    public void notifyKlassObservers() {
+        for (KlassParticipant participant : klassParticipants) {
+            participant.updateLeader(this, leader);
+        }
+    }
+
+    public void addKlassParticipant(Person klassParticipant) {
+        if (klassParticipants == null) {
+            klassParticipants = new HashSet<>();
+        }
+        klassParticipants.add(klassParticipant);
     }
 
     @Override
@@ -47,33 +79,6 @@ public class Klass {
     }
 
     public Set<Person> getParticipants() {
-        return participants;
-    }
-
-    public void assignLeader(Student student) {
-        if (student.getKlass() == null || !student.getKlass().equals(this)) {
-            System.out.print("It is not one of us.\n");
-            return;
-        }
-        this.leader = student;
-        participants.forEach(person -> {
-            if (person instanceof Teacher) {
-                System.out.print("I am " + person.getName() + ", teacher of Class " + id + ". I know " + student.getName() + " become Leader.\n");
-            }
-            if (person instanceof Student) {
-                System.out.print("I am " + person.getName() + ", student of Class " + id + ". I know " + student.getName() + " become Leader.\n");
-            }
-        });
-    }
-
-    public boolean isLeader(Student student) {
-        return leader != null && leader.equals(student);
-    }
-
-    public void attach(Person person) {
-        if (participants == null) {
-            participants = new HashSet<>();
-        }
-        participants.add(person);
+        return klassParticipants;
     }
 }
